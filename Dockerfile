@@ -64,6 +64,7 @@ RUN	source docker-common.sh \
 	$DOCKER_NFT_DIR \
 	$DOCKER_SPOOL_DIR \
 	&& mkdir -p $DOCKER_ACME_SSL_DIR \
+	&& ln -sf $DOCKER_PHP_DIR/Ami.php $DOCKER_PHP_DIR/ami.class.inc \
 	&& ln -sf $DOCKER_PHP_DIR/autoban.php $DOCKER_BIN_DIR/autoban \
 	&& ln -sf $DOCKER_PHP_DIR/websms.php $DOCKER_BIN_DIR/websms \
 	&& apk --no-cache --update add \
@@ -95,6 +96,8 @@ RUN	apk --no-cache --update add \
 	asterisk-curl \
 	asterisk-speex \
 	asterisk-srtp \
+	asterisk-fax \
+	asterisk-spandsp \
 	openssl \
 	curl \
 	$PHP_VER \
