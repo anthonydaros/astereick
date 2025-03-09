@@ -33,10 +33,20 @@ ENV	PHP_VER=$PHP_VER \
 	ACME_POSTHOOK="sv restart asterisk" \
 	SYSLOG_LEVEL=4 \
 	SYSLOG_OPTIONS=-SDt \
-	WEBSMSD_PORT=80
+	WEBSMSD_PORT=8080 \
+	AMI_PORT=5038 \
+	SIP_PORT=5060 \
+	RTP_PORT_START=10000 \
+	RTP_PORT_END=20000
 ENV	DOCKER_MOH_DIR=$DOCKER_LIB_DIR/moh \
 	DOCKER_ACME_SSL_DIR=$DOCKER_SSL_DIR/acme \
 	DOCKER_APPL_SSL_DIR=$DOCKER_SSL_DIR/asterisk
+
+# Expose ports
+EXPOSE $WEBSMSD_PORT \
+       $AMI_PORT \
+       $SIP_PORT \
+       $RTP_PORT_START-$RTP_PORT_END/udp
 
 #
 # Copy utility scripts including docker-entrypoint.sh to image
@@ -98,6 +108,8 @@ RUN	apk --no-cache --update add \
 	asterisk-srtp \
 	asterisk-fax \
 	spandsp \
+	spandsp-dev \
+	asterisk-dev \
 	openssl \
 	curl \
 	$PHP_VER \
