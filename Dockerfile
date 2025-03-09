@@ -97,7 +97,7 @@ RUN	apk --no-cache --update add \
 	asterisk-speex \
 	asterisk-srtp \
 	asterisk-fax \
-	asterisk-spandsp \
+	spandsp \
 	openssl \
 	curl \
 	$PHP_VER \
